@@ -1,7 +1,4 @@
-.PHONY: default build
-
-default: build
-	./ploy
+.PHONY: build
 
 build:
 	go build
