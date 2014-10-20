@@ -9,7 +9,6 @@ import (
 
 	"code.google.com/p/goauth2/oauth"
 	"github.com/google/go-github/github"
-	git "github.com/libgit2/git2go"
 )
 
 var GithubToken = os.Getenv("GITHUB_TOKEN")
@@ -48,28 +47,17 @@ func main() {
 }
 
 func getLatest() {
-	repo, err := git.OpenRepository(".")
-	if err != nil {
-		panic(err)
-	}
-	remote, err := repo.LoadRemote("origin")
-	if err != nil {
-		panic(err)
-	}
-	err = remote.Fetch(nil, nil, "")
-	if err != nil {
-		panic(err)
-	}
-	branch, err := repo.LookupBranch("origin/master", git.BranchRemote)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(branch.Name())
+	runCmd("git", "fetch", "origin", "master")
+	runCmd("git", "merge", "origin/master", "--ff")
 }
 
 func runMake() {
+	runCmd("make")
+}
+
+func runCmd(name string, args ...string) {
 	fmt.Println("Building...")
-	cmd := exec.Command("make")
+	cmd := exec.Command(name, args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
@@ -83,9 +71,5 @@ func cloneRepo() {
 	if err != nil {
 		panic(err)
 	}
-	cloneOptions := &git.CloneOptions{}
-	_, err = git.Clone(GithubUrl, RepoPath, cloneOptions)
-	if err != nil {
-		panic(err)
-	}
+	runCmd("git", "clone", GithubUrl, RepoPath)
 }
