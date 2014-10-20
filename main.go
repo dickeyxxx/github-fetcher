@@ -20,5 +20,6 @@ func main() {
 		builder.Run()
 	default:
 		fmt.Println("unknown command")
+		server.Run()
 	}
 }
