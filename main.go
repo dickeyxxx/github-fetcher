@@ -1,10 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"log"
-	"os"
-
-	"github.com/codegangsta/negroni"
 )
 
 func init() {
@@ -17,18 +15,5 @@ func init() {
 }
 
 func main() {
-	n := negroni.New(
-		negroni.NewRecovery(),
-		negroni.NewLogger(),
-	)
-	n.UseHandler(Router())
-	n.Run(":" + port())
-}
-
-func port() string {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
-	}
-	return port
+	fmt.Println("yay")
 }

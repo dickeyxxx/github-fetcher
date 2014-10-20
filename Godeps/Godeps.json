@@ -8,25 +8,12 @@
 			"Rev": "afe77d958c701557ec5dc56f6936fcc194d15520"
 		},
 		{
-			"ImportPath": "github.com/codegangsta/negroni",
-			"Comment": "v0.1-32-gc64702c",
-			"Rev": "c64702ca03d0f858ab7866638b69e85f0d4c6ee7"
-		},
-		{
 			"ImportPath": "github.com/google/go-github/github",
 			"Rev": "79144d61570cf848e1bc4051cfa8d7fff7ca7a95"
 		},
 		{
 			"ImportPath": "github.com/google/go-querystring/query",
 			"Rev": "30f7a39f4a218feb5325f3aebc60c32a572a8274"
-		},
-		{
-			"ImportPath": "github.com/gorilla/context",
-			"Rev": "14f550f51af52180c2eefed15e5fd18d63c0a64a"
-		},
-		{
-			"ImportPath": "github.com/gorilla/mux",
-			"Rev": "e444e69cbd2e2e3e0749a2f3c717cec491552bbf"
 		}
 	]
 }
