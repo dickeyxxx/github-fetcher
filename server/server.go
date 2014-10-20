@@ -24,6 +24,6 @@ func GithubHook(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("doc %+v\n", push)
+	fmt.Printf("doc %+v\n", push.Ref)
 	fmt.Fprintf(w, "yay")
 }
