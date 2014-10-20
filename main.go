@@ -60,6 +60,11 @@ func getLatest() {
 	if err != nil {
 		panic(err)
 	}
+	branch, err := repo.LookupBranch("origin/master", git.BranchRemote)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(branch.Name())
 }
 
 func runMake() {
