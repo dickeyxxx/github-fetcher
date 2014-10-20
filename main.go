@@ -56,11 +56,10 @@ func getLatest() {
 	if err != nil {
 		panic(err)
 	}
-	refspecs, err := remote.FetchRefspecs()
+	err = remote.Fetch(nil, nil, "")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("refspecs %+v\n", refspecs)
 }
 
 func runMake() {
