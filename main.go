@@ -42,11 +42,29 @@ func main() {
 		cloneRepo()
 	}
 	os.Chdir(RepoPath)
+	getLatest()
 	runMake()
 	fmt.Println("done")
 }
 
+func getLatest() {
+	repo, err := git.OpenRepository(".")
+	if err != nil {
+		panic(err)
+	}
+	remote, err := repo.LoadRemote("origin")
+	if err != nil {
+		panic(err)
+	}
+	refspecs, err := remote.FetchRefspecs()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("refspecs %+v\n", refspecs)
+}
+
 func runMake() {
+	fmt.Println("Building...")
 	cmd := exec.Command("make")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -56,7 +74,7 @@ func runMake() {
 }
 
 func cloneRepo() {
-	fmt.Println("Cloning", GithubUrl, "...")
+	fmt.Printf("Cloning %s...\n", GithubUrl)
 	err := os.MkdirAll(path.Dir(RepoPath), 0755)
 	if err != nil {
 		panic(err)
